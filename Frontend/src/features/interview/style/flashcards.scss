@@ -1,0 +1,313 @@
+$bg: #161616;
+$surface: #1e1e1e;
+$surface2: #252525;
+$border: #2e2e2e;
+$accent: #d20d3b;
+$accent2: #ff4d6d;
+$text: #f5f5f5;
+$muted: #888;
+$green: #22c55e;
+$amber: #f59e0b;
+$red: #ef4444;
+$purple: #a78bfa;
+
+.flash-page {
+    min-height: 100vh;
+    background: $bg;
+    padding: 1.5rem 1rem;
+}
+
+.flash-container {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.flash-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.flash-back-btn {
+    background: transparent;
+    border: 1px solid $border;
+    border-radius: 8px;
+    color: $muted;
+    font-size: 13px;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: all .15s;
+    &:hover { border-color: $text; color: $text; }
+}
+
+.flash-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: $text;
+    flex: 1;
+}
+
+.flash-filter {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.flash-filter-btn {
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: 1px solid $border;
+    background: transparent;
+    color: $muted;
+    font-size: 12px;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: all .15s;
+    &:hover { color: $text; }
+    &--active { background: rgba($accent, .12); border-color: rgba($accent, .4); color: $accent2; }
+}
+
+.flash-summary {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.flash-summary__item {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+
+    &--easy { background: rgba($green, .1); color: $green; }
+    &--ok   { background: rgba($amber, .1); color: $amber; }
+    &--hard { background: rgba($red,   .1); color: $red;   }
+}
+
+.flash-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.flash-progress__bar {
+    flex: 1;
+    height: 5px;
+    background: $surface;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.flash-progress__fill {
+    height: 100%;
+    background: linear-gradient(90deg, $accent, $accent2);
+    border-radius: 3px;
+    transition: width .4s ease;
+}
+
+.flash-progress__label { font-size: 12px; color: $muted; min-width: 44px; text-align: right; }
+
+// ─── 3D flip card ─────────────────────────────────────────────────────────────
+.flash-scene {
+    perspective: 1200px;
+    min-height: 380px;
+}
+
+.flash-card {
+    width: 100%;
+    min-height: 380px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.55s cubic-bezier(.4,0,.2,1);
+
+    &--flipped { transform: rotateY(180deg); }
+
+    &__face {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        background: $surface;
+        border: 1px solid $border;
+        border-radius: 16px;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+
+        &--back {
+            transform: rotateY(180deg);
+            border-color: rgba($purple, .3);
+            overflow-y: auto;
+        }
+    }
+
+    &__type {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__num, &__back-label {
+        font-size: 12px;
+        color: $muted;
+    }
+
+    &__q {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: $text;
+        line-height: 1.6;
+        flex: 1;
+    }
+
+    &__intention {
+        font-size: 13px;
+        color: $amber;
+        line-height: 1.6;
+    }
+
+    &__answer {
+        font-size: 13.5px;
+        color: #ccc;
+        line-height: 1.8;
+        flex: 1;
+    }
+}
+
+.flash-type-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: capitalize;
+
+    &--technical  { background: rgba(#60a5fa, .12); color: #60a5fa; }
+    &--behavioral { background: rgba($purple, .12);  color: $purple;  }
+}
+
+.flash-flip-btn {
+    align-self: center;
+    margin-top: auto;
+    padding: 10px 28px;
+    border-radius: 8px;
+    border: none;
+    background: $accent;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s;
+    &:hover { background: $accent2; }
+}
+
+.flash-rate {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.flash-rate__label {
+    font-size: 12px;
+    color: $muted;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    font-weight: 600;
+}
+
+.flash-rate__btns {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.flash-rate-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid $border;
+    background: transparent;
+    color: $text;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .15s;
+
+    &--hard { &:hover { background: rgba($red, .12);   border-color: rgba($red, .4);   color: $red;   } }
+    &--ok   { &:hover { background: rgba($amber, .12); border-color: rgba($amber, .4); color: $amber; } }
+    &--easy { &:hover { background: rgba($green, .12); border-color: rgba($green, .4); color: $green; } }
+}
+
+// ─── Done screen ──────────────────────────────────────────────────────────────
+.flash-done {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2.5rem 1rem;
+    text-align: center;
+
+    &__icon { font-size: 3rem; }
+
+    h1 { font-size: 1.5rem; font-weight: 700; color: $text; }
+
+    &__stats {
+        display: flex;
+        gap: 16px;
+    }
+
+    &__hint {
+        font-size: 13.5px;
+        color: $muted;
+        max-width: 380px;
+        line-height: 1.6;
+    }
+
+    &__actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+.flash-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 14px 24px;
+    border-radius: 10px;
+
+    &__val { font-size: 2rem; font-weight: 800; }
+    &__label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+
+    &--easy { background: rgba($green, .1); .flash-stat__val, .flash-stat__label { color: $green; } }
+    &--ok   { background: rgba($amber, .1); .flash-stat__val, .flash-stat__label { color: $amber; } }
+    &--hard { background: rgba($red, .1);   .flash-stat__val, .flash-stat__label { color: $red;   } }
+}
+
+.flash-action-btn {
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all .15s;
+
+    &--primary { background: $accent; color: #fff; &:hover { background: $accent2; } }
+    &--warn    { background: rgba($red, .12); color: $red; border: 1px solid rgba($red, .3); &:hover { background: rgba($red, .2); } }
+    &--ghost   { background: transparent; border: 1px solid $border; color: $text; &:hover { background: $surface2; } }
+}
+
+@media (max-width: 600px) {
+    .flash-rate__btns { flex-direction: column; }
+    .flash-done__stats { flex-direction: column; }
+}

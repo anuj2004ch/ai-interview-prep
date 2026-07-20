@@ -1,0 +1,583 @@
+$bg: #161616;
+$surface: #1e1e1e;
+$surface2: #252525;
+$surface3: #2a2a2a;
+$border: #2e2e2e;
+$accent: #d20d3b;
+$accent2: #ff4d6d;
+$text: #f5f5f5;
+$muted: #888;
+$green: #22c55e;
+$amber: #f59e0b;
+$red: #ef4444;
+$purple: #a78bfa;
+$blue: #60a5fa;
+
+// ─── Section ──────────────────────────────────────────────────────────────────
+.dsa-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        h2 { font-size: 1.1rem; font-weight: 600; color: $text; }
+    }
+
+    &__stats { display: flex; gap: 8px; }
+
+    &__intro { font-size: 13.5px; color: $muted; line-height: 1.6; }
+}
+
+.dsa-stat {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+
+    &--easy   { background: rgba($green, .12); color: $green; }
+    &--medium { background: rgba($amber, .12); color: $amber; }
+    &--hard   { background: rgba($red,   .12); color: $red;   }
+}
+
+.dsa-problems { display: flex; flex-direction: column; gap: .75rem; }
+
+.dsa-empty {
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    color: $muted;
+    font-size: 14px;
+}
+
+// ─── Problem Card ─────────────────────────────────────────────────────────────
+.dsa-card {
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color .15s;
+
+    &--expanded { border-color: rgba($blue, .3); }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 18px;
+        cursor: pointer;
+        transition: background .15s;
+        gap: 12px;
+
+        &:hover { background: $surface2; }
+
+        &-left {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            flex: 1;
+        }
+    }
+
+    &__num {
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba($blue, .1);
+        color: $blue;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 700;
+        margin-top: 2px;
+    }
+
+    &__title {
+        font-size: 15px;
+        font-weight: 600;
+        color: $text;
+        margin-bottom: 6px;
+    }
+
+    &__meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+    &__chevron {
+        color: $muted;
+        transition: transform .2s;
+        flex-shrink: 0;
+        &--open { transform: rotate(180deg); }
+    }
+
+    &__body {
+        border-top: 1px solid $border;
+        padding: 1.25rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+}
+
+.dsa-difficulty {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: capitalize;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid;
+}
+
+.dsa-tag {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: rgba($purple, .1);
+    color: $purple;
+    font-weight: 500;
+}
+
+// ─── Problem description ───────────────────────────────────────────────────────
+.dsa-problem {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &__desc {
+        font-size: 14px;
+        line-height: 1.8;
+        color: #d0d0d0;
+        white-space: pre-wrap;
+    }
+}
+
+.dsa-examples { display: flex; flex-direction: column; gap: .75rem; }
+
+.dsa-example {
+    background: $surface2;
+    border-radius: 8px;
+    padding: 12px 14px;
+
+    &__label {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        color: $muted;
+        margin-bottom: 8px;
+    }
+
+    &__io {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        font-size: 13.5px;
+        color: $text;
+    }
+
+    &__expl {
+        margin-top: 6px;
+        font-size: 12.5px;
+        color: $muted;
+        font-style: italic;
+    }
+
+    code {
+        font-family: 'Fira Code', 'Consolas', monospace;
+        font-size: 13px;
+        color: $blue;
+    }
+}
+
+.dsa-io-label {
+    font-weight: 600;
+    color: $muted;
+    margin-right: 6px;
+}
+
+.dsa-constraints {
+    &__label {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        color: $muted;
+        margin-bottom: 6px;
+    }
+
+    ul { padding-left: 14px; }
+    li { font-size: 13px; color: #bbb; margin-bottom: 4px; }
+    code { font-family: 'Fira Code', monospace; font-size: 12.5px; color: $amber; }
+}
+
+.dsa-complexity-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.dsa-complexity-badge {
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: rgba($purple, .1);
+    color: $purple;
+    font-weight: 600;
+}
+
+// ─── Hints ────────────────────────────────────────────────────────────────────
+.dsa-hints {
+    background: rgba($amber, .05);
+    border: 1px solid rgba($amber, .2);
+    border-radius: 10px;
+    padding: 14px;
+
+    &__label {
+        font-size: 12px;
+        font-weight: 700;
+        color: $amber;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+        margin-bottom: 10px;
+    }
+
+    &__list { display: flex; flex-direction: column; gap: 8px; }
+}
+
+.dsa-hint {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 13.5px;
+    color: #ccc;
+    padding: 8px 12px;
+    background: $surface2;
+    border-radius: 7px;
+    line-height: 1.5;
+
+    &--revealed {
+        border-left: 3px solid $amber;
+    }
+
+    &__num {
+        font-weight: 700;
+        color: $amber;
+        margin-right: 8px;
+    }
+
+    &__locked {
+        color: $muted;
+        font-style: italic;
+        flex: 1;
+    }
+
+    &__reveal-btn {
+        flex-shrink: 0;
+        padding: 4px 12px;
+        border-radius: 6px;
+        border: 1px solid rgba($amber, .4);
+        background: rgba($amber, .08);
+        color: $amber;
+        font-size: 12px;
+        cursor: pointer;
+        transition: background .15s;
+
+        &:hover { background: rgba($amber, .15); }
+    }
+}
+
+// ─── Editor ───────────────────────────────────────────────────────────────────
+.dsa-editor-section {
+    border: 1px solid $border;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.dsa-tabs {
+    display: flex;
+    background: $surface2;
+    border-bottom: 1px solid $border;
+}
+
+.dsa-tab {
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    color: $muted;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all .15s;
+    border-bottom: 2px solid transparent;
+
+    &:hover { color: $text; }
+
+    &--active {
+        color: $blue;
+        border-bottom-color: $blue;
+        background: rgba($blue, .05);
+    }
+}
+
+.dsa-editor-pane {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dsa-editor-hint {
+    font-size: 12.5px;
+    color: $muted;
+    line-height: 1.5;
+}
+
+.dsa-lang-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dsa-lang-select {
+    background: $surface2;
+    border: 1px solid $border;
+    border-radius: 6px;
+    color: $text;
+    font-size: 12.5px;
+    padding: 5px 10px;
+    cursor: pointer;
+
+    &:focus { outline: none; border-color: $blue; }
+}
+
+.dsa-approach-textarea {
+    width: 100%;
+    min-height: 120px;
+    background: $bg;
+    border: 1px solid $border;
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: $text;
+    font-size: 13.5px;
+    line-height: 1.7;
+    resize: vertical;
+    font-family: inherit;
+
+    &:focus { outline: none; border-color: rgba($blue, .5); }
+    &::placeholder { color: $muted; }
+}
+
+.dsa-code-textarea {
+    width: 100%;
+    min-height: 200px;
+    background: #0d0d0d;
+    border: 1px solid $border;
+    border-radius: 8px;
+    padding: 14px 16px;
+    color: #e2e8f0;
+    font-size: 13.5px;
+    line-height: 1.7;
+    resize: vertical;
+    font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
+    tab-size: 4;
+
+    &:focus { outline: none; border-color: rgba($blue, .5); }
+    &::placeholder { color: #444; }
+}
+
+.dsa-solution-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.dsa-solution-approach {
+    p:first-child { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: $muted; margin-bottom: 6px; }
+    p:last-child { font-size: 13.5px; color: #ccc; line-height: 1.7; }
+}
+
+.dsa-solution-code {
+    background: #0d0d0d;
+    border: 1px solid $border;
+    border-radius: 8px;
+    padding: 16px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #e2e8f0;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    white-space: pre;
+}
+
+// ─── Action buttons ───────────────────────────────────────────────────────────
+.dsa-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.dsa-evaluate-btn {
+    padding: 10px 22px;
+    border-radius: 8px;
+    border: none;
+    background: $accent;
+    color: #fff;
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .15s;
+
+    &:hover:not(:disabled) { background: $accent2; }
+    &:disabled { opacity: .5; cursor: not-allowed; }
+}
+
+.dsa-solution-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid $border;
+    background: transparent;
+    color: $muted;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all .15s;
+
+    &:hover { border-color: $purple; color: $purple; background: rgba($purple, .05); }
+}
+
+.dsa-error { font-size: 13px; color: $red; }
+
+// ─── Result Panel ─────────────────────────────────────────────────────────────
+.dsa-result {
+    background: $surface2;
+    border-radius: 10px;
+    border: 1px solid $border;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    animation: dsaFadeIn .25s ease;
+}
+
+@keyframes dsaFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; } }
+
+.dsa-result__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $border;
+}
+
+.dsa-result__score-block {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.dsa-result__score { font-size: 2.5rem; font-weight: 800; color: $text; line-height: 1; }
+.dsa-result__denom { font-size: 1.2rem; color: $muted; }
+
+.dsa-result__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-top: 4px;
+}
+
+.dsa-result__grade { font-size: 1rem; font-weight: 700; }
+
+.dsa-result__correct {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    width: fit-content;
+
+    &.correct   { background: rgba($green, .12); color: $green; }
+    &.incorrect { background: rgba($red,   .12); color: $red;   }
+}
+
+.dsa-result__complexity {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-left: auto;
+}
+
+.dsa-complexity-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    background: $surface;
+    border-radius: 8px;
+    padding: 8px 12px;
+
+    &--optimal { background: rgba($green, .08); }
+
+    &__label { font-size: 10px; text-transform: uppercase; color: $muted; font-weight: 600; letter-spacing: .05em; }
+    &__val    { font-size: 14px; font-weight: 700; color: $text; font-family: 'Fira Code', monospace; }
+
+    &--optimal &__val { color: $green; }
+}
+
+.dsa-result__section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    p { font-size: 13.5px; line-height: 1.7; color: #ccc; }
+}
+
+.dsa-result__section-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: $muted;
+    margin-bottom: 4px;
+}
+
+.dsa-result__two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    @media (max-width: 600px) { grid-template-columns: 1fr; }
+}
+
+.dsa-result__col {
+    ul { padding-left: 14px; }
+    li { font-size: 13px; color: #ccc; line-height: 1.6; margin-bottom: 4px; }
+
+    &--bugs li { color: #fca5a5; }
+}
+
+.dsa-result__optimized-hint {
+    background: rgba($blue, .08);
+    border-left: 3px solid $blue;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px;
+    font-size: 13.5px;
+    color: #93c5fd;
+    line-height: 1.6;
+}
+
+.dsa-result__tip {
+    background: rgba($amber, .08);
+    border-left: 3px solid $amber;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px;
+    font-size: 13.5px;
+    color: #fcd34d;
+    line-height: 1.6;
+}
